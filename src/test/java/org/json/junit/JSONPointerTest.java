@@ -4,6 +4,7 @@ package org.json.junit;
 Public Domain.
 */
 
+import com.google.gson.JsonParser;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -72,8 +73,9 @@ public class JSONPointerTest {
 
     @Test
     public void queryByEmptyKeySubObject() {
-        assertEquals( "{\"\":\"empty key of an object with an empty key\",\"subKey\":\"Some" +
-                " other value\"}", query("/obj/").toString());
+        JsonParser parser = new JsonParser();
+        assertEquals(parser.parse("{\"\":\"empty key of an object with an empty key\",\"subKey\":\"Some" +
+                " other value\"}"), parser.parse(query("/obj/").toString()));
     }
 
     @Test
